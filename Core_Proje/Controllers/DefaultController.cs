@@ -1,9 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Core_Proje.Controllers
 {
     public class DefaultController : Controller
     {
+        MessageManager messageManager = new MessageManager(new EfMessageDal());
+
         public IActionResult Index()
         {
             return View();
@@ -18,5 +24,21 @@ namespace Core_Proje.Controllers
         {
             return PartialView();
         }
+
+        [HttpGet]
+        public PartialViewResult SendMessage()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult SendMessage(Message message)
+        {
+            message.Date = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+            message.Status = true;
+            messageManager.TAdd(message);
+            return RedirectToAction("Index");
+        }
+
     }
 }
