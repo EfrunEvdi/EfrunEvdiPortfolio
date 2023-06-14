@@ -7,31 +7,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Controllers
 {
-    public class FeatureController : Controller
+    public class AboutController : Controller
     {
-        FeatureManager featureManager = new FeatureManager(new EfFeatureDal());
+        AboutManager aboutManager = new AboutManager(new EfAboutDal());
 
         public IActionResult Index(int id)
         {
-            ViewBag.V1 = "Öne Çıkan Güncelleme";
-            ViewBag.V2 = "Öne Çıkan";
-            ViewBag.V3 = "Öne Çıkan Güncelleme";
-            ViewBag.V2URL = "/Feature/Index/";
+            ViewBag.V1 = "Hakkımda Güncelleme";
+            ViewBag.V2 = "Hakkımda";
+            ViewBag.V3 = "Hakkımda Güncelleme";
+            ViewBag.V2URL = "/About/Index/";
 
-            var values = featureManager.TGetByID(1);
+            var values = aboutManager.TGetByID(1);
             return View(values);
         }
 
         [HttpPost]
-        public IActionResult Index(Feature feature)
+        public IActionResult Index(About about)
         {
-            FeatureValidator validations = new FeatureValidator();
-            ValidationResult result = validations.Validate(feature);
+            AboutValidator validations = new AboutValidator();
+            ValidationResult result = validations.Validate(about);
 
             if (result.IsValid)
             {
-                featureManager.TUpdate(feature);
-                return RedirectToAction("Index", "Default");
+                aboutManager.TUpdate(about);
+                return RedirectToAction("Index","Default");
             }
             else
             {

@@ -1,0 +1,73 @@
+﻿@model About
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">Hakkımda Düzenleme Formu </h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="/Skill/Index/" class="btn btn-sm btn-primary">Hakkımda</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <h6 class="heading-small text-muted mb-4">HAKKIMDA BİLGİLERİ</h6>
+                <div class="row">
+                    <input type="hidden" asp-for="AboutID" />
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Başlık : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Title" placeholder="Başlık giriniz.">
+                            @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Açıklama : </label>
+                            <textarea rows="10" class="form-control" asp-for="Description" placeholder="Açıklama giriniz."></textarea>
+                            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Mail : </label>
+                            <input type="email" id="input-username" class="form-control" asp-for="Mail" placeholder="Mailinizi giriniz.">
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Telefon Numarası : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Phone" placeholder="Telefon numaranızı giriniz.">
+                            @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Adres: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Address" placeholder="Adresinizi giriniz.">
+                            @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Profil Resmi: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ImageUrl" placeholder="Profil resim URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.ImageUrl, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary col-12">Hakkımda Güncelle!</button>
+            </form>
+        </div>
+    </div>
+</div>
+

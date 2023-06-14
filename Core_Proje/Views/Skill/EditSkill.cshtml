@@ -1,7 +1,7 @@
 ﻿@model Skill
 
 @{
-    ViewData["Title"] = "AddSkill";
+    ViewData["Title"] = "EditSkill";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,7 +10,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h3 class="mb-0">Yeni Yetenek Ekleme Formu </h3>
+                    <h3 class="mb-0">Yetenek Düzenleme Formu </h3>
                 </div>
                 <div class="col-4 text-right">
                     <a href="/Skill/Index/" class="btn btn-sm btn-primary">Yeteneklerim</a>
@@ -19,6 +19,7 @@
         </div>
         <div class="card-body">
             <form method="post">
+                <input type="hidden" asp-for="SkillID" />
                 <h6 class="heading-small text-muted mb-4">YETENEK BİLGİLERİ</h6>
                 <div class="row">
                     <div class="col-lg-12">
@@ -34,8 +35,9 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary col-12">Yeni Yetenek Ekle!</button>
+                <button type="submit" class="btn btn-outline-primary col-12">Yeteneği Güncelle!</button>
             </form>
         </div>
     </div>
 </div>
+

@@ -5,6 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
 			<PrivateAssets>all</PrivateAssets>
@@ -20,9 +21,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
 	  <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ValidationRules\" />
 	</ItemGroup>
 </Project>

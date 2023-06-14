@@ -1,0 +1,107 @@
+﻿@model Portfolio
+
+@{
+    ViewData["Title"] = "AddPortfolio";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">Yeni Proje Ekleme Formu </h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="/Skill/Index/" class="btn btn-sm btn-primary">Projelerim</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <h6 class="heading-small text-muted mb-4">PROJE BİLGİLERİ</h6>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Adı : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Name" placeholder="Proje adı giriniz.">
+                            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Platform : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Platform" placeholder="Platform görsel URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.Platform, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje URL'si Başlığı: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ProjectUrlTitle" placeholder="Proje URL'sinin başlığını giriniz.">
+                            @Html.ValidationMessageFor(x => x.ProjectUrlTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje URL'si: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ProjectUrl" placeholder="Proje URL'sinin başlığını giriniz.">
+                            @Html.ValidationMessageFor(x => x.ProjectUrl, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Görsel1 URL'si : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ImageUrl1" placeholder="Proje görsel1 URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.ImageUrl1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Görsel2 URL'si : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ImageUrl2" placeholder="Proje görsel2 URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.ImageUrl2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Görsel3 URL'si : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ImageUrl3" placeholder="Proje görsel3 URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.ImageUrl3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Görsel4 URL'si : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="ImageUrl4" placeholder="Proje görsel4 URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.ImageUrl4, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Ücreti : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Price" placeholder="Proje ücretini giriniz.">
+                            @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Proje Tamamlanma Oranı : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Value" placeholder="Proje tamamlanma oranını giriniz.">
+                            @Html.ValidationMessageFor(x => x.Value, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Proje Durumu</label>
+                            <input type="text" id="input-email" class="form-control" asp-for="Status" placeholder="True yada False olarak giriş yapınız.">
+                            @Html.ValidationMessageFor(x => x.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary col-12">Yeni Proje Ekle!</button>
+            </form>
+        </div>
+    </div>
+</div>
+
