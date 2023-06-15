@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "EditExperience";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="col-xl-12 order-xl-1">
@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-username">Resim URL : </label>
+                            <label class="form-control-label" for="input-username">Resim URL </label>
                             <input type="text" class="form-control" asp-for="ImageUrl" placeholder="Deneyim görsel URL'sini giriniz.">
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary col-12">Deneyimi Güncelle!</button>
+                <button type="submit" class="btn btn-outline-info col-12">Deneyimi Güncelle!</button>
             </form>
         </div>
     </div>

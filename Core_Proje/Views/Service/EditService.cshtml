@@ -1,0 +1,46 @@
+﻿@model Service
+
+@{
+    ViewData["Title"] = "EditService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">Hizmet Düzenleme Formu </h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="/Service/Index/" class="btn btn-sm btn-primary">Hizmetlerim</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="ServiceID" />
+                <h6 class="heading-small text-muted mb-4">HİZMET BİLGİLERİ</h6>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="hidden" asp-for="ServiceID" />
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Hizmet Adı : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Title" placeholder="Hizmet adını giriniz.">
+                            @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Yetenek Oranı (%)</label>
+                            <input type="text" id="input-email" class="form-control" asp-for="ImageUrl" placeholder="Hitmez görsel URL'sini giriniz.">
+                            @Html.ValidationMessageFor(x => x.ImageUrl, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary col-12">Hitmeti Güncelle!</button>
+            </form>
+        </div>
+    </div>
+</div>
+

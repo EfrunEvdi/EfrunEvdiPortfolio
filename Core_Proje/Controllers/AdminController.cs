@@ -32,5 +32,10 @@ namespace Core_Proje.Controllers
         {
             return PartialView();
         }
+
+        public PartialViewResult SidebarPartial()
+        {
+            return PartialView();
+        }
     }
 }

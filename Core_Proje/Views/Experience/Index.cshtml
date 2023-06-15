@@ -2,81 +2,55 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    string[] renkler = { "blue", "cyan", "danger", "dark", "gray", "gray-dark", "green", "indigo", "info", "light", "orange", "pink", "primary", "purple", "red", "success", "teal", "warning", "yellow" };
-
-    Random random = new Random();
-    int rastgeleIndis = random.Next(0, renkler.Length);
-    int rastgeleIndis1 = random.Next(0, renkler.Length);
-    string rastgeleDeger = renkler[rastgeleIndis];
-    string rastgeleDeger1 = renkler[rastgeleIndis1];
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="row">
-    <div class="col">
+    <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <!-- Card header -->
-            <div class="card-header border-0">
-                <h3 class="mb-0">Deneyim Listesi</h3>
-            </div>
-            <!-- Light table -->
-            <div class="table-responsive">
-                <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col" class="sort" data-sort="name">Pozisyon</th>
-                            <th scope="col" class="sort" data-sort="budget">Firma Adı</th>
-                            <th scope="col" class="sort" data-sort="status">Tarih</th>
-                            <th scope="col">Açıklama</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="list">
-                        @foreach (var item in Model)
-                        {
+            <div class="card-body">
+                <h4 class="card-title">Deneyimlerim</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <a href="#" class="avatar rounded-circle mr-3">
-                                            <img class="img-fluid" alt="Image placeholder" src="@item.ImageUrl">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="name mb-0 text-sm">@item.Title</span>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td class="budget">
-                                    @item.Name
-                                </td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-primary"></i>
-                                        <span class="status">@item.Date</span>
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="avatar-group">
-                                        <textarea rows="5" class="form-control" disabled>@item.Description</textarea>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="/Experience/EditExperience/@item.ExperienceID"><i class="fas fa-pen mx-0"></i> Güncelle</a>
-                                            <a class="dropdown-item" href="/Experience/DeleteExperience/@item.ExperienceID"><i class="fas fa-trash  mx-0"></i> Sil</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <th> Görsel </th>
+                                <th> Pozisyon </th>
+                                <th> Firma Adı </th>
+                                <th> Açıklama </th>
+                                <th> Tarih </th>
+                                <th> İşlem Seçiniz </th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-                <a href="/Experience/AddExperience" class="btn btn-outline-primary col-12">Yeni Deneyim Ekle!</a>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="py-1">
+                                        <img class="bg-light" src="@item.ImageUrl" alt="image" />
+                                    </td>
+                                    <td> @item.Title </td>
+                                    <td>@item.Name</td>
+                                    <td> <textarea class="form-control bg-dark" rows="5" disabled>@item.Description</textarea> </td>
+                                    <td> @item.Date </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="mdi mdi-auto-fix"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="/Experience/EditExperience/@item.ExperienceID"><i class="mdi mdi-lead-pencil"></i> Güncelle</a>
+                                                <a class="dropdown-item" href="/Experience/DeleteExperience/@item.ExperienceID"><i class="mdi mdi-delete"></i> Sil</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Experience/AddExperience" class="btn btn-outline-info col-12 mt-3">Yeni Deneyim Ekle!</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
