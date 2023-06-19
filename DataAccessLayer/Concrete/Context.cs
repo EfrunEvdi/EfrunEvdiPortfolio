@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context : IdentityDbContext
+    public class Context : IdentityDbContext<WriterUser, WriterRole, int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,6 +17,7 @@ namespace DataAccessLayer.Concrete
         }
 
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Feature> Features { get; set; }
@@ -29,5 +30,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<ToDoList> ToDoLists { get; set; }
         public DbSet<User> Users { get; set; } // Idendity paketinden dolayı uyarı veriyor.
         public DbSet<UserMessage> UserMessages { get; set; }
+
     }
 }

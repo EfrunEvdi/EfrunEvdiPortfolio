@@ -1,56 +1,52 @@
-﻿@{
+﻿@model List<Announcement>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
+
+    string color = "";
 }
+
+
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Basic Table</h4>
-            <p class="card-description">
-                Add class <code>.table</code>
-            </p>
+            <h4 class="card-title">Duyurular</h4>
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Profile</th>
-                            <th>VatNo.</th>
-                            <th>Created</th>
-                            <th>Status</th>
+                            <th>Başlık</th>
+                            <th>Tarih</th>
+                            <th>Durum</th>
+                            <th>Detaylar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Jacob</td>
-                            <td>53275531</td>
-                            <td>12 May 2017</td>
-                            <td><label class="badge badge-danger">Pending</label></td>
-                        </tr>
-                        <tr>
-                            <td>Messsy</td>
-                            <td>53275532</td>
-                            <td>15 May 2017</td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>53275533</td>
-                            <td>14 May 2017</td>
-                            <td><label class="badge badge-info">Fixed</label></td>
-                        </tr>
-                        <tr>
-                            <td>Peter</td>
-                            <td>53275534</td>
-                            <td>16 May 2017</td>
-                            <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td>20 May 2017</td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Status == "Yeni Yazı")
+                            {
+                                color = "info";
+                            }
+                            if (item.Status == "MVC Yıldızları")
+                            {
+                                color = "primary";
+                            }
+                            if (item.Status == "Proje Bilgisi")
+                            {
+                                color = "success";
+                            }
+
+                            <tr>
+                                <th>@item.Title</th>
+                                <td>@(((DateTime)item.Date).ToString("dd MMMM yyyy"))</td>
+                                <td><label class="badge badge-@color">@item.Status</label></td>
+                                <td><a href="/Writer/Default/AnnouncementDetails/@item.ID" class="btn btn-outline-info">Detay</a></td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

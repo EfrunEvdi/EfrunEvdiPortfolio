@@ -1,4 +1,4 @@
-﻿@model UserRegisterViewModel
+﻿@model UserLoginViewModel
 
 @{
     Layout = null;
@@ -59,51 +59,19 @@
                             <span class="padding-bottom--15">Kayıt Olma Formu</span>
                             <form method="post">
                                 <div class="field padding-bottom--24">
-                                    <label for="text">Profil Resmi URl'si</label>
-                                    <input type="text" asp-for="ImageUrl">
-                                    <span asp-validation-for="ImageUrl" class="text-danger  field"></span>
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <label for="text">İsim</label>
-                                    <input type="text" asp-for="Name">
-                                    <span asp-validation-for="Name" class="text-danger  field"></span>
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <label for="text">Soyisim</label>
-                                    <input type="text" asp-for="Surname">
-                                    <span asp-validation-for="Surname" class="text-danger  field"></span>
-                                </div>
-                                <div class="field padding-bottom--24">
                                     <label for="text">Kullanıcı Adı</label>
                                     <input type="text" asp-for="UserName">
                                     <span asp-validation-for="UserName" class="text-danger  field"></span>
                                 </div>
+
                                 <div class="field padding-bottom--24">
-                                    <label for="text">E-Posta</label>
-                                    <input type="email" asp-for="EMail">
-                                    <span asp-validation-for="EMail" class="text-danger field"></span>
+                                    <label for="password">Şifre</label>
+                                    <input type="password" asp-for="Password">
+                                    <span asp-validation-for="Password" class="text-danger  field"></span>
+                                    @*<div class="reset-pass">
+                                    <a href="#">Forgot your password?</a>
+                                    </div>*@
                                 </div>
-                                <div class="field padding-bottom--24">
-                                    <div class="grid--50-50">
-                                        <label for="password">Şifre</label>
-                                        <input type="password" asp-for="Password">
-                                        <span asp-validation-for="Password" class="text-danger  field"></span>
-                                        @*<div class="reset-pass">
-                                        <a href="#">Forgot your password?</a>
-                                        </div>*@
-                                    </div>
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <div class="grid--50-50">
-                                        <label for="password">Şifre Tekrar</label>
-                                        <input type="password" asp-for="ConfirmPassword">
-                                        <span asp-validation-for="ConfirmPassword" class="text-danger  field"></span>
-                                        @*<div class="reset-pass">
-                                        <a href="#">Forgot your password?</a>
-                                        </div>*@
-                                    </div>
-                                </div>
-                                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
                                 <div class="field padding-bottom--24">
                                     <input type="submit" name="submit" value="Continue">
@@ -115,7 +83,7 @@
                         </div>
                     </div>
                     <div class="footer-link padding-top--24">
-                        <span>Zaten bir hesabın var mı? <a href="/Writer/Login/Index">Giriş Yap!</a></span>
+                        <span>Henüz bir hesabın yok mu? <a href="/Writer/Register/Index">Kayıt Ol!</a></span>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,28 @@
+﻿@model Announcement
+
+@{
+    ViewData["Title"] = "AnnouncementDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Duyuru Detayı</h4>
+            <p class="card-description">
+                @Model.Title
+            </p>
+            <blockquote class="blockquote">
+                <p class="mb-0">@(((DateTime)Model.Date).ToString("dd MMMM yyyy")) <code> Tarihinde yayınlanmıştır. </code></p>
+            </blockquote>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote blockquote-primary">
+                <p>@Model.Content</p>
+                <footer class="blockquote-footer">@Model.Status </footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+
