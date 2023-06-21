@@ -28,8 +28,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
-        public DbSet<User> Users { get; set; } // Idendity paketinden dolayı uyarı veriyor.
-        public DbSet<UserMessage> UserMessages { get; set; }
         public DbSet<WriterMessage> WriterMessages { get; set; }
     }
 }

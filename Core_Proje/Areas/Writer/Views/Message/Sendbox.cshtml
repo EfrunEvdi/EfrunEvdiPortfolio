@@ -1,0 +1,38 @@
+﻿@model List<WriterMessage>
+
+@{
+    ViewData["Title"] = "Sendbox";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Giden Mesajlar</h4>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Alıcı Bilgileri</th>
+                            <th>Konu</th>
+                            <th>Tarih</th>
+                            <th>Detaylar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.ReceiverName</th>
+                                <td>@item.Subject</td>
+                                <td>@(((DateTime)item.Date).ToString("dd MMMM yyyy"))</td>
+                                <td><a href="/Writer/Message/SendboxMessageDetails/@item.ID" class="btn btn-outline-info">Detay</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,7 +27,7 @@ namespace Core_Proje.Areas.Writer.Controllers
 
             // Statistics
             Context context = new Context();
-            ViewBag.GMS = context.Messages.Count();
+            ViewBag.GMS = context.WriterMessages.Where(x => x.Receiver == user.Email).Count();
             ViewBag.DS = context.Announcements.Count();
             ViewBag.KS = context.Users.Count();
             ViewBag.PS = context.Portfolios.Count();

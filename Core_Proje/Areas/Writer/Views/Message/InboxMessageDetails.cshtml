@@ -1,0 +1,29 @@
+﻿@model WriterMessage
+
+@{
+    ViewData["Title"] = "InboxMessageDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+
+    string mail = ViewBag.UserMail;
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@Model.SenderName</h4>
+            <p class="card-description">
+                @(((DateTime)Model.Date).ToString("dd MMMM yyyy")) <code> tarihinde gönderildi. </code>
+            </p>
+            <blockquote class="blockquote">
+                <p class="mb-0"> Konu : @Model.Subject</p>
+            </blockquote>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote blockquote-primary">
+                <p>@Model.Content</p>
+                <footer class="blockquote-footer">@Model.Sender </footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+

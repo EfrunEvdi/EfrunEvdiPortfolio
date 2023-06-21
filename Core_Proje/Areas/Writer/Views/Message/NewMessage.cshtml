@@ -1,0 +1,38 @@
+﻿@model WriterMessage
+
+@{
+    ViewData["Title"] = "NewMessage";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Mesaj</h4>
+                <p class="card-description">
+                    Yeni Mesaj Gönderme Safyası
+                </p>
+                <form method="post" class="forms-sample">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Alıcı Mail</label>
+                        <input type="email" asp-for="Receiver" class="form-control" placeholder="Alıcı emailini giriniz.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Konu</label>
+                        <input type="text" class="form-control" asp-for="Subject" placeholder="Konuyu giriniz.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mesaj İçeriği</label>
+                        <textarea rows="5" type="text" class="form-control" asp-for="Content" placeholder="Mesaj içeriğini giriniz."></textarea>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

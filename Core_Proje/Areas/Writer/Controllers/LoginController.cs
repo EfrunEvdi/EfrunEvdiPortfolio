@@ -34,7 +34,7 @@ namespace Core_Proje.Areas.Writer.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Default");
+                    return LocalRedirect("/Writer/Dashboard/Index");
                 }
 
                 else
@@ -43,6 +43,12 @@ namespace Core_Proje.Areas.Writer.Controllers
                 }
             }
             return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

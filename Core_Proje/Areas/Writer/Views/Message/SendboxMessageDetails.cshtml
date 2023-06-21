@@ -1,0 +1,27 @@
+﻿@model WriterMessage
+
+@{
+    ViewData["Title"] = "SendboxMessageDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@Model.ReceiverName</h4>
+            <p class="card-description">
+                @(((DateTime)Model.Date).ToString("dd MMMM yyyy")) <code> tarihinde gönderildi. </code>
+            </p>
+            <blockquote class="blockquote">
+                <p class="mb-0"> Konu : @Model.Subject</p>
+            </blockquote>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote blockquote-primary">
+                <p>@Model.Content</p>
+                <footer class="blockquote-footer">@Model.Receiver </footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
