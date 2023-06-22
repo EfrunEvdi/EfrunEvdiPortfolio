@@ -1,0 +1,67 @@
+﻿@model List<Testimonial>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="row ">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Referanslarım</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="form-check form-check-muted m-0">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input">
+                                        </label>
+                                    </div>
+                                </th>
+                                <th> Kişisel Bilgiler </th>
+                                <th> Meslek </th>
+                                <th> Yorum </th>
+                                <th> İşlem Seçiniz </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src="@item.ImageUrl" alt="image" />
+                                        <span class="pl-2">@item.ClientName</span>
+                                    </td>
+                                    <td> @item.Company </td>
+                                    <td> <textarea class="form-control bg-dark" rows="5" disabled>@item.Comment</textarea> </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="mdi mdi-auto-fix"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="/Testimonial/EditTestimonial/@item.TestimonialID"><i class="mdi mdi-lead-pencil"></i> Güncelle</a>
+                                                <a class="dropdown-item" href="/Testimonial/DeleteTestimonial/@item.TestimonialID"><i class="mdi mdi-delete"></i> Sil</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Testimonial/AddTestimonial" class="btn btn-outline-info col-12 mt-3">Yeni Referans Ekle!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

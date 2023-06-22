@@ -1,0 +1,6 @@
+﻿@model List<SocialMedia>
+
+@foreach (var item in Model)
+{
+    <li class="nav-item"><a class="nav-link" target="_blank" href="@item.Url" title="@item.Name"><i class="@item.Icon"></i><span class="menu-title sr-only">@item.Name</span></a></li>
+}

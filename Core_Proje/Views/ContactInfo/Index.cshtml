@@ -1,0 +1,66 @@
+﻿@model Contact
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">İletişim Bilgileri Düzenleme Formu </h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="/Contact/Index/" class="btn btn-sm btn-primary">İletişim Bilgileri</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <h6 class="heading-small text-muted mb-4">İLETİŞİM BİLGİLERİ</h6>
+                <div class="row">
+                    <input type="hidden" asp-for="ContactID" />
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Başlık : </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Title" placeholder="Giriş ifadesi giriniz.">
+                            @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Açıklama : </label>
+                            <textarea rows="5" type="text" id="input-username" class="form-control" asp-for="Description" placeholder="Açıklama giriniz."></textarea>
+                            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Mail: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Mail" placeholder="Mail giriniz.">
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">LinkedIn: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="Github" placeholder="GitHub linki giriniz.">
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">GitHub: </label>
+                            <input type="text" id="input-username" class="form-control" asp-for="LinkedIn" placeholder="LinkedIn linki giriniz.">
+                            @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info col-12">İletişim Bilgileri Güncelle!</button>
+            </form>
+        </div>
+    </div>
+</div>
+
