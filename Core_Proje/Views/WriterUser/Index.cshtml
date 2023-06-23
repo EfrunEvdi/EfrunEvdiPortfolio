@@ -1,0 +1,58 @@
+﻿@model List<WriterUser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <div class="p-2">
+                        <button type="button" id="btngetlistall" class="btn btn-outline-primary col-6">Verileri Getir</button><button type="button" id="btnadduser" class="btn btn-outline-info col-6">Kaydet</button>
+                    </div>
+                </div>
+
+                <h4 class="text-center">Yazar Listesi</h4>
+                <div class="p-2" id="listuser">
+                    Veriler buraya gelecek.
+                </div>
+
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="inpname" placeholder="Ad" />
+                    <br />
+                    <input type="text" class="form-control" id="inpsurname" placeholder="Soyad" />
+                    <br />
+                    <input type="text" class="form-control" id="inpusername" placeholder="Kullanıcı Adı" />
+                    <br />
+                    <input type="text" class="form-control" id="inpmail" placeholder="Mail Adresi" />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+
+    <script>
+        $("#btngetlistall").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/WriterUser/ListUser/",
+
+                success: function (funk) {
+                    let users = jQuery.parseJSON(funk);
+                    console.log(users);
+                }
+            });
+        });
+    </script>
+    }
+
+<script src="~/lib/jquery/dist/jquery.js"></script>

@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-6">
+                    <div class="p-2">
+                        <button type="button" id="btngetlistall" class="btn btn-outline-info">Verileri Getir</button>
+                    </div>
+                </div>
+
+                <div class="p-2" id="listexperience"></div>
+                <br>
+                <div class="p-2" id="listexperiencebyid"> </div>
+
+
+                <div class="col-md-12">
+                    <h4>Deneyim Ekleme Paneli</h4>
+                    <input type="text" class="form-control" id="inpname" placeholder="Deneyim İsmi" />
+                    <br />
+                    <input type="text" class="form-control" id="inpdate" placeholder="Tarih" />
+                    <br />
+                    <button type="button" id="btnadd" class="btn btn-outline-primary">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        $("#btngetlistall").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/ExperienceAjax/ListExperience/",
+
+                success: function (func) {
+                    let values = jQuery.parseJSON(func);
+                    console.log(values);
+                    let htmlst = "<table class=table table-bordered> <tr> <th>ID</th> <th>Deneyim İsmi</th> <th>Tarih</th> </tr> ";
+                    $.each(values, (index, value) => {
+                        htmlst += `<tr> <td>${value.ExperienceID}</td> <td>${value.Name}</td> <td>${value.Date}</td> </tr>`
+                    });
+                    htmlst += "</table>";
+                    $("#listexperience").html(htmlst);
+                }
+            });
+        });
+
+        $("#btnadd").click(function () {
+            let values = {
+                Name: $("#inpname").val(),
+                Date: $("#inpdate").val()
+            };
+
+            $.ajax({
+                type: "Post",
+                url: "/ExperienceAjax/AddExperience/",
+                data: values,
+                success: function (func2) {
+                    let result = jQuery.parseJSON(func2);
+                    alert(result.Name + " Başarılı bir şekilde eklendi");
+                }
+            });
+        });
+    </script>
+    }
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+

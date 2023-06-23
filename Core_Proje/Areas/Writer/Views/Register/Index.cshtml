@@ -58,11 +58,7 @@
                         <div class="formbg-inner padding-horizontal--48">
                             <span class="padding-bottom--15">Kayıt Olma Formu</span>
                             <form method="post">
-                                <div class="field padding-bottom--24">
-                                    <label for="text">Profil Resmi URl'si</label>
-                                    <input type="text" asp-for="ImageUrl">
-                                    <span asp-validation-for="ImageUrl" class="text-danger  field"></span>
-                                </div>
+                                <input type="hidden" asp-for="ImageUrl" value="*">
                                 <div class="field padding-bottom--24">
                                     <label for="text">İsim</label>
                                     <input type="text" asp-for="Name">

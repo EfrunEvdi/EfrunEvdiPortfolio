@@ -6,6 +6,7 @@
 @await Component.InvokeAsync("FeatureStatistics")
 
 <div class="row">
+
     @await Component.InvokeAsync("PriceDetails")
 
     @await Component.InvokeAsync("Last5Projects")
@@ -17,11 +18,13 @@
 @await Component.InvokeAsync("ProjectList")
 
 <div class="row">
+
     @await Component.InvokeAsync("MessageList")
 
     @await Component.InvokeAsync("SlideList")
 
     @await Component.InvokeAsync("ToDoListPanel")
+
 </div>
 
 @await Component.InvokeAsync("VisitorMap")
