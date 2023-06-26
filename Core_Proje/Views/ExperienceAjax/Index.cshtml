@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Experience
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
@@ -8,24 +10,59 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-6">
+
                     <div class="p-2">
                         <button type="button" id="btngetlistall" class="btn btn-outline-info">Verileri Getir</button>
                     </div>
+
                 </div>
+
 
                 <div class="p-2" id="listexperience"></div>
                 <br>
-                <div class="p-2" id="listexperiencebyid"> </div>
-
+                <div class="p-2" id="listexperiencebyid"></div>
+                <br />
 
                 <div class="col-md-12">
-                    <h4>Deneyim Ekleme Paneli</h4>
+                    <h4>Ekleme Paneli</h4>
                     <input type="text" class="form-control" id="inpname" placeholder="Deneyim İsmi" />
                     <br />
                     <input type="text" class="form-control" id="inpdate" placeholder="Tarih" />
                     <br />
                     <button type="button" id="btnadd" class="btn btn-outline-primary">Kaydet</button>
                 </div>
+
+                <br />
+
+                <div class="col-md-12">
+                    <h4>ID'ye Göre Getirme Paneli</h4>
+                    <input type="text" class="form-control" id="inpid" placeholder="ID Giriniz" />
+                    <br>
+                    <button type="button" id="btnid" class="btn btn-outline-warning">ID'ye Göre Getir</button>
+                </div>
+
+                <br />
+
+                <div class="col-md-12">
+                    <h4>ID'ye Göre Silme Paneli</h4>
+                    <input type="text" class="form-control" id="inpexpid" placeholder="ID Giriniz" />
+                    <br>
+                    <button type="button" id="btndelete" class="btn btn-outline-danger">Sil</button>
+                </div>
+
+                <br>
+
+                <div class="col-md-12">
+                    <h5>Güncelleme Paneli</h5>
+                    <input type="text" class="form-control" id="inpupdateid" placeholder="ID Giriniz" />
+                    <br />
+                    <input type="text" class="form-control" id="inpupdatename" placeholder="İsim Giriniz" />
+                    <br />
+                    <input type="text" class="form-control" id="inpupdatedate" placeholder="Tarih Giriniz" />
+                    <br>
+                    <button type="button" id="btnupdate" class="btn btn-outline-success">Güncelle</button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -33,6 +70,7 @@
 
 @section Scripts
     {
+
     <script>
         $("#btngetlistall").click(function () {
             $.ajax({
@@ -41,12 +79,12 @@
                 type: "Get",
                 url: "/ExperienceAjax/ListExperience/",
 
-                success: function (func) {
-                    let values = jQuery.parseJSON(func);
+                success: function (funk) {
+                    let values = jQuery.parseJSON(funk);
                     console.log(values);
                     let htmlst = "<table class=table table-bordered> <tr> <th>ID</th> <th>Deneyim İsmi</th> <th>Tarih</th> </tr> ";
                     $.each(values, (index, value) => {
-                        htmlst += `<tr> <td>${value.ExperienceID}</td> <td>${value.Name}</td> <td>${value.Date}</td> </tr>`
+                        htmlst += `<tr> <td>${value.ExperienceID} </td> <td> ${value.Name}</td> <td> ${value.Date}</td> </tr>`
                     });
                     htmlst += "</table>";
                     $("#listexperience").html(htmlst);
@@ -64,15 +102,64 @@
                 type: "Post",
                 url: "/ExperienceAjax/AddExperience/",
                 data: values,
-                success: function (func2) {
-                    let result = jQuery.parseJSON(func2);
+                success: function (funk2) {
+                    let result = jQuery.parseJSON(funk2);
                     alert(result.Name + " Başarılı bir şekilde eklendi");
                 }
             });
+
         });
+
+        $("#btnid").click(x => {
+            let id = $("#inpid").val();
+
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/ExperienceAjax/GetByID/",
+                data: { ExperienceID: id },
+                success: function (funk3) {
+                    let result = jQuery.parseJSON(funk3);
+                    console.log(result);
+                    let htmlstr = `<table class=table table-hover> <tr> <th>Deneyim ID</th> <td>${result.ExperienceID}</td></tr> <tr> <th> Deneyim Başlığı</th> <td> ${result.Name} </td> </tr> </table>`;
+                    $("#listexperiencebyid").html(htmlstr);
+                }
+            });
+
+        });
+
+        $("#btndelete").click(x => {
+            let id = $("#inpid").val();
+            $.ajax({
+                url: "/ExperienceAjax/DeleteExperience/" + id,
+                type: "Post",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (funk4) {
+                    loadData();
+                }
+            });
+        });
+
+        $("#btnupdate").click(function () {
+            let value = {
+                id: $("#inpupdateid").val(),
+                name: $("#inpupdatename").val(),
+                date: $("#inpupdatedate").val()
+            };
+            $.ajax({
+                type: "Post",
+                url: "/ExperienceAjax/UpdateExperience/",
+                data: value,
+                dataType: "json",
+                success: function (funk4) {
+                    alert("Veriler başarılı bir şekilde güncellendi.");
+                }
+            });
+        });
+
     </script>
     }
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
-
-
