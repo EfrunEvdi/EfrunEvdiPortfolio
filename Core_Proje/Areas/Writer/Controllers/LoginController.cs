@@ -34,7 +34,7 @@ namespace Core_Proje.Areas.Writer.Controllers
 
                 if (result.Succeeded)
                 {
-                    return LocalRedirect("/Writer/Dashboard/Index");
+                    return LocalRedirect("/Writer/Profile/Index");
                 }
 
                 else

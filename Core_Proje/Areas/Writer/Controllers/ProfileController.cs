@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using Core_Proje.Areas.Writer.Models;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
@@ -15,14 +17,27 @@ namespace Core_Proje.Areas.Writer.Controllers
     public class ProfileController : Controller
     {
         private readonly UserManager<WriterUser> _userManager;
+        AnnouncementManager announcementManager = new AnnouncementManager(new EfAnnouncementDal());
 
         public ProfileController(UserManager<WriterUser> userManager)
         {
             _userManager = userManager;
         }
 
-        [HttpGet]
         public async Task<IActionResult> Index()
+        {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            ViewBag.PP = values.ImageUrl;
+            ViewBag.NS = values.Name + " " + values.Surname;
+            ViewBag.UN = values.UserName;
+            ViewBag.MA = values.Email;
+
+            var announcementvalues = announcementManager.TGetList().OrderByDescending(t => t.Date).Take(5).ToList();
+            return View(announcementvalues);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Setting()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             UserEditViewModel model = new UserEditViewModel();
@@ -33,7 +48,7 @@ namespace Core_Proje.Areas.Writer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(UserEditViewModel userEditViewModel)
+        public async Task<IActionResult> Setting(UserEditViewModel userEditViewModel)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
