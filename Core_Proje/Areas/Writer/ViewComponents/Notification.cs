@@ -24,7 +24,7 @@ namespace Core_Proje.Areas.Writer.ViewComponents
             ViewBag.UserImage = user.ImageUrl;
 
 
-            var values = announcementManager.TGetList().OrderByDescending(x=>x.Date).Take(3).ToList();
+            var values = announcementManager.TGetList().OrderByDescending(x => x.Date).Take(3).ToList();
             return View(values);
         }
     }

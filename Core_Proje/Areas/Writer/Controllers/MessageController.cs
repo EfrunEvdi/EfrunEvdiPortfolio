@@ -27,7 +27,7 @@ namespace Core_Proje.Areas.Writer.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             p = user.Email;
-            var MessageList = writerMessageManager.GetListReceiverMessage(p);
+            var MessageList = writerMessageManager.GetListReceiverMessage(p).OrderByDescending(x => x.Date).ToList();
 
             return View(MessageList);
         }
@@ -38,7 +38,7 @@ namespace Core_Proje.Areas.Writer.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             p = user.Email;
-            var MessageList = writerMessageManager.GetListSenderMessage(p);
+            var MessageList = writerMessageManager.GetListSenderMessage(p).OrderByDescending(x => x.Date).ToList();
 
             return View(MessageList);
         }

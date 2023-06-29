@@ -4,13 +4,12 @@
     <div class="cover bg-light">
         <div class="container px-3">
             <div class="row">
-                <div class="col-lg-6 p-2"><img class="img-fluid" src="~/Template/images/illustrations/building_websites.svg" alt="hello" /></div>
+                <div class="col-lg-6 p-2"><img class="img-fluid" src="~/Template/images/illustrations/development.svg" alt="hello" /></div>
                 <div class="col-lg-6">
-                    <div class="mt-5">
+                    <div class="mt-5 text-center">
 
                         @foreach (var item in Model)
                         {
-
                             <p class="lead text-uppercase mb-1">@item.Header</p>
                             <h1 class="intro-title marker" data-aos="fade-left" data-aos-delay="50">@item.Name</h1>
                             <p class="lead fw-normal mt-3" data-aos="fade-up" data-aos-delay="100">@item.Title</p>
@@ -18,7 +17,7 @@
 
                         <div class="social-nav" data-aos="fade-up" data-aos-delay="200">
                             <nav role="navigation">
-                                <ul class="nav justify-content-left">
+                                <ul class="nav justify-content-center">
                                     @await Component.InvokeAsync("SocialMediaList")
                                 </ul>
                             </nav>

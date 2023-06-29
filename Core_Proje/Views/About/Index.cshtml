@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="col-xl-12 order-xl-1">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-username">Telefon Numarası : </label>
+                            <label class="form-control-label" for="input-username">İletişim Bilgisi : </label>
                             <input type="text" id="input-username" class="form-control" asp-for="Phone" placeholder="Telefon numaranızı giriniz.">
                             @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
                         </div>

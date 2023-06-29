@@ -2,75 +2,108 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Projelerim</h4>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">Projelerim</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sort" data-sort="name">Proje Adı</th>
+                            <th scope="col" class="sort" data-sort="budget">Ücret</th>
+                            <th scope="col" class="sort" data-sort="status">Durum</th>
+                            <th scope="col">Görseller</th>
+                            <th scope="col" class="sort" data-sort="completion">Tamamlanma Oranı</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        @foreach (var item in Model)
+                        {
+
                             <tr>
-                                <th> Platform Görseli </th>
-                                <th> Proje Adı </th>
-                                <th> Ücret </th>
-                                <th> Durum </th>
-                                <th> Görseller </th>
-                                <th> Tamamlanma Oranı </th>
-                                <th> İşlem Seçiniz </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="py-1">
-                                        <img class="bg-light" src="@item.Platform" alt="image" />
-                                        @item.ProjectUrlTitle
-                                    </td>
-                                    <td> @item.Name </td>
-                                    <td> @item.Price </td>
-
-                                    @if (item.Status == true)
-                                    {
-                                        <td> Aktif </td>
-                                    }
-                                    else
-                                    {
-                                        <td> Pasif </td>
-                                    }
-
-                                    <td class="py-1">
-                                        <img class="bg-light" src="@item.ImageUrl1" alt="image" />
-                                        <img class="bg-light" src="@item.ImageUrl2" alt="image" />
-                                        <img class="bg-light" src="@item.ImageUrl3" alt="image" />
-                                        <img class="bg-light" src="@item.ImageUrl4" alt="image" />
-                                    </td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: @item.Value%" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100"></div>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <a href="#" class="avatar rounded-circle mr-3">
+                                            <img alt="Image placeholder" src="@item.Platform">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">@item.Name</span>
                                         </div>
-                                    </td>
+                                    </div>
+                                </th>
+                                <td class="budget">
+                                    @item.Price
+                                </td>
+                                @if (item.Status == true)
+                                {
                                     <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="mdi mdi-auto-fix"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="/Portfolio/EditPortfolio/@item.PortfolioID"><i class="mdi mdi-lead-pencil"></i> Güncelle</a>
-                                                <a class="dropdown-item" href="/Portfolio/DeletePortfolio/@item.PortfolioID"><i class="mdi mdi-delete"></i> Sil</a>
+                                        <span class="badge badge-dot mr-4">
+                                            <i class="bg-success"></i>
+                                            <span class="status">Aktif</span>
+                                        </span>
+
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <span class="badge badge-dot mr-4">
+                                            <i class="bg-danger"></i>
+                                            <span class="status">Pasif</span>
+                                        </span>
+                                    </td>
+                                }
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="@item.Name">
+                                            <img alt="Image placeholder" src="@item.ImageUrl1">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="@item.Name">
+                                            <img alt="Image placeholder" src="@item.ImageUrl2">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="@item.Name">
+                                            <img alt="Image placeholder" src="@item.ImageUrl3">
+                                        </a>
+                                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="@item.Name">
+                                            <img alt="Image placeholder" src="@item.ImageUrl4">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="completion mr-2">@item.Value%</span>
+                                        <div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <a href="/Portfolio/AddPortfolio" class="btn btn-outline-info col-12 mt-3">Yeni Proje Ekle!</a>
-                </div>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="/Portfolio/EditPortfolio/@item.PortfolioID"><i class="fas fa-pen mx-0"></i> Güncelle</a>
+                                            <a class="dropdown-item" href="/Portfolio/DeletePortfolio/@item.PortfolioID"><i class="fas fa-trash  mx-0"></i> Sil</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="/Portfolio/AddPortfolio" class="btn btn-outline-primary col-12">Yeni Proje Ekle!</a>
             </div>
         </div>
     </div>
