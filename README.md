@@ -21,3 +21,4 @@ Bu proje, ASP.Net Core 5.0 kullanarak Entity Framework Core ve N Tier Architectu
 * Rol tabanlı yetkilendirme işlemleri
 
 ## Proje Videosu
+[![Video Linki](https://img.shields.io/badge/Video%20Linki%20-izlemek%20için%20tıklayın-blue)](https://www.linkedin.com/feed/update/urn:li:activity:7080877705855942657/)
