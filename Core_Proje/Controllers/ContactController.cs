@@ -1,9 +1,13 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using System.Linq;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ContactController : Controller
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
@@ -14,7 +18,7 @@ namespace Core_Proje.Controllers
             ViewBag.V3 = "";
             ViewBag.V2URL = "/Contact/Index/";
 
-            var values = messageManager.TGetList();
+            var values = messageManager.TGetList().OrderByDescending(x => x.Date).ToList();
             return View(values);
         }
 

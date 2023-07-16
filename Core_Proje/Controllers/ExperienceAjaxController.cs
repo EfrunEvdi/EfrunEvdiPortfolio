@@ -1,17 +1,24 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Data;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ExperienceAjaxController : Controller
     {
         ExperienceManager experienceManager = new ExperienceManager(new EfExperienceDal());
 
         public IActionResult Index()
         {
+            ViewBag.V1 = "Deneyimlerim (Ajax)";
+            ViewBag.V2 = "Deneyim Listesi";
+            ViewBag.V3 = "";
+            ViewBag.V2URL = "/Experience/Index/";
             return View();
         }
 

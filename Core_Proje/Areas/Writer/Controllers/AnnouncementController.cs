@@ -2,19 +2,19 @@
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Core_Proje.Areas.Writer.Controllers
 {
     [Area("Writer")]
     [Route("Writer/[controller]/[action]")]
-    [Authorize]
     public class AnnouncementController : Controller
     {
         AnnouncementManager announcementManager = new AnnouncementManager(new EfAnnouncementDal());
 
         public IActionResult Index()
         {
-            var values = announcementManager.TGetList();
+            var values = announcementManager.TGetList().OrderByDescending(x => x.Date).ToList();
             return View(values);
         }
 

@@ -2,49 +2,63 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Mesajlarım</h4>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">Mesajlarım</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sort" data-sort="name">Gönderen</th>
+                            <th scope="col" class="sort" data-sort="budget">Mail</th>
+                            <th scope="col" class="sort" data-sort="status">Tarih</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th> Gönderen </th>
-                                <th> Mail </th>
-                                <th> Tarih </th>
-                                <th> İşlem Seçiniz </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td> @item.Name </td>
-                                    <td> @item.Mail </td>
-                                    <td> @(((DateTime)item.Date).ToString("dd MMMM yyyy")) </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="mdi mdi-auto-fix"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="/Contact/ContactDetail/@item.MessageID"><i class="mdi mdi-book-open-page-variant"></i> Detay</a>
-                                                <a class="dropdown-item" href="/Contact/DeleteContact/@item.MessageID"><i class="mdi mdi-delete"></i> Sil</a>
-                                            </div>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">@item.Name</span>
                                         </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                                    </div>
+                                </th>
+                                <td class="budget">
+                                    @item.Mail
+                                </td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-primary"></i>
+                                        <span class="status">@(((DateTime)item.Date).ToString("dd MMMM yyyy"))</span>
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="/Contact/ContactDetail/@item.MessageID"><i class="fas fa-pen mx-0"></i> Detay</a>
+                                            <a class="dropdown-item" href="/Contact/DeleteContact/@item.MessageID"><i class="fas fa-trash mx-0"></i> Sil</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
-

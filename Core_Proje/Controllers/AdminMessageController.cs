@@ -2,12 +2,15 @@
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Data;
 using System.Linq;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminMessageController : Controller
     {
         WriterMessageManager writerMessageManager = new WriterMessageManager(new EfWriterMessageDal());
@@ -20,7 +23,7 @@ namespace Core_Proje.Controllers
 
             string p;
             p = "efruncetkin@gmail.com";
-            var values = writerMessageManager.GetListReceiverMessage(p);
+            var values = writerMessageManager.GetListReceiverMessage(p).OrderByDescending(x => x.Date).ToList();
             return View(values);
         }
 
@@ -33,7 +36,7 @@ namespace Core_Proje.Controllers
 
             string p;
             p = "efruncetkin@gmail.com";
-            var values = writerMessageManager.GetListSenderMessage(p);
+            var values = writerMessageManager.GetListSenderMessage(p).OrderByDescending(x => x.Date).ToList();
             return View(values);
         }
 

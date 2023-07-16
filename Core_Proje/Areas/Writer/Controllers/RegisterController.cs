@@ -43,7 +43,7 @@ namespace Core_Proje.Areas.Writer.Controllers
 
                 if (result.Succeeded && userRegisterViewModel.Password == userRegisterViewModel.ConfirmPassword)
                 {
-                    return RedirectToAction("Index","Login");
+                    return RedirectToAction("Index", "Login");
                 }
 
                 else

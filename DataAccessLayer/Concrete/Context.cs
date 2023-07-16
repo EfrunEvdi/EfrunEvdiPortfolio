@@ -13,7 +13,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLOCALDB; Database = EfrunEvdiPortfolioDB; Integrated Security = True;");
+            optionsBuilder.UseSqlServer("xxx");
         }
 
         public DbSet<About> Abouts { get; set; }

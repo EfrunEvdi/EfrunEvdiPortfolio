@@ -10,6 +10,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Core_Proje.Areas.Writer.Controllers
 {

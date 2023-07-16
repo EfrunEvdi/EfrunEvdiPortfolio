@@ -2,51 +2,61 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="row ">
-    <div class="col-12 grid-margin">
+<div class="row">
+    <div class="col">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Sosyal Medyalarım</h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">Sosyal Medya Bilgilerim</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sort" data-sort="name">İkon</th>
+                            <th scope="col" class="sort" data-sort="budget">Url</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th> İkon </th>
-                                <th> Url </th>
-                                <th> İşlem Seçiniz </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        <i class="@item.Icon"></i>
-                                        <span class="pl-2">@item.Name</span>
-                                    </td>
-                                    <td> @item.Url </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="mdi mdi-auto-fix"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="/SocialMedia/EditSocialMedia/@item.SocialMediaID"><i class="mdi mdi-lead-pencil"></i> Güncelle</a>
-                                                <a class="dropdown-item" href="/SocialMedia/DeleteSocialMedia/@item.SocialMediaID"><i class="mdi mdi-delete"></i> Sil</a>
-                                            </div>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <a href="#" class="avatar rounded-circle mr-3">
+                                            <i class="@item.Icon"></i>
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">@item.Name</span>
                                         </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <a href="/SocialMedia/AddSocialMedia" class="btn btn-outline-info col-12 mt-3">Yeni Sosyal Medya Ekle!</a>
-                </div>
+                                    </div>
+                                </th>
+                                <td class="budget">
+                                    @item.Url
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="/SocialMedia/EditSocialMedia/@item.SocialMediaID"><i class="fas fa-pen mx-0"></i> Güncelle</a>
+                                            <a class="dropdown-item" href="/SocialMedia/DeleteSocialMedia/@item.SocialMediaID"><i class="fas fa-trash  mx-0"></i> Sil</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="/SocialMedia/AddSocialMedia" class="btn btn-outline-primary col-12">Yeni Sosyal Medya Ekle!</a>
             </div>
         </div>
     </div>
 </div>
-

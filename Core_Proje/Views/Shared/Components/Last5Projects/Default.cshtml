@@ -1,101 +1,40 @@
-﻿<div class="col-md-8 grid-margin stretch-card">
+﻿@model List<Portfolio>
+
+<div class="col-xl-8">
     <div class="card">
-        <div class="card-body">
-            <div class="d-flex flex-row justify-content-between">
-                <h4 class="card-title mb-1">Son Projelerim</h4>
-                <p class="text-muted mb-1">Proje Durumu</p>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="preview-list">
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-primary">
-                                    <i class="mdi mdi-file-document"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                                <div class="flex-grow">
-                                    <h6 class="preview-subject">Asp.Net Core Portfolio</h6>
-                                    <p class="text-muted mb-0">Proje Fiyatı : 20₺</p>
-                                </div>
-                                <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                    <p class="text-muted">Tarihi : Haziran 2023</p>
-                                    <p class="text-muted mb-0">Tamamlanma Oranı : %40 </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-success">
-                                    <i class="mdi mdi-cloud-download"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                                <div class="flex-grow">
-                                    <h6 class="preview-subject">Traversal Core</h6>
-                                    <p class="text-muted mb-0">Proje Fiyatı : Ücretsiz</p>
-                                </div>
-                                <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                    <p class="text-muted">Tarihi : Nisan 2023</p>
-                                    <p class="text-muted mb-0">Tamamlanma Oranı : %100 </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-info">
-                                    <i class="mdi mdi-clock"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                                <div class="flex-grow">
-                                    <h6 class="preview-subject">Skill Power</h6>
-                                    <p class="text-muted mb-0">Proje Fiyatı : Ücretsiz</p>
-                                </div>
-                                <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                    <p class="text-muted">Tarihi : Devam ediyor</p>
-                                    <p class="text-muted mb-0">Tamamlanma Oranı : %25</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-danger">
-                                    <i class="mdi mdi-email-open"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                                <div class="flex-grow">
-                                    <h6 class="preview-subject">Core Blog</h6>
-                                    <p class="text-muted mb-0">Proje Fiyatı : Ücretsiz</p>
-                                </div>
-                                <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                    <p class="text-muted">Tarihi : Mayıs 2023</p>
-                                    <p class="text-muted mb-0">Tamamlanma Oranı : %100 </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-warning">
-                                    <i class="mdi mdi-chart-pie"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                                <div class="flex-grow">
-                                    <h6 class="preview-subject">E-Ticaret Projesi</h6>
-                                    <p class="text-muted mb-0">Proje Fiyatı : Ücretsiz</p>
-                                </div>
-                                <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                    <p class="text-muted">Tarihi : Ocak 2023</p>
-                                    <p class="text-muted mb-0">Tamamlanma Oranı : %100 </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card-header border-0">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="mb-0">Son Projelerim</h3>
+                </div>
+                <div class="col text-right">
+                    <a href="/Portfolio/Index" class="btn btn-sm btn-primary">Proje</a>
                 </div>
             </div>
+        </div>
+        <div class="table-responsive">
+            <!-- Projects table -->
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Proje Adı</th>
+                        <th scope="col">Oran</th>
+                        <th scope="col">Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.PortfolioID</th>
+                            <td>@item.Name</td>
+                            <td>@item.Value%</td>
+                            <td><i class="fas fa-arrow-up text-success mr-3"></i> @item.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

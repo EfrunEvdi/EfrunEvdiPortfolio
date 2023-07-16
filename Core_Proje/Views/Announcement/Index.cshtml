@@ -1,0 +1,71 @@
+﻿@model List<Announcement>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">Duyuru Listesi</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sort" data-sort="name">Başlık</th>
+                            <th scope="col">Konu</th>
+                            <th scope="col" class="sort" data-sort="status">Tarih</th>
+                            <th scope="col" class="sort" data-sort="budget">İçerik</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">@item.Title</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td class="budget">
+                                    @item.Status
+                                </td>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-primary"></i>
+                                        <span class="status">@(((DateTime)item.Date).ToString("dd MMMM yyyy"))</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <textarea rows="5" class="form-control" disabled>@item.Content</textarea>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="/Announcement/EditAnnouncement/@item.ID"><i class="fas fa-pen mx-0"></i> Güncelle</a>
+                                            <a class="dropdown-item" href="/Announcement/DeleteAnnouncement/@item.ID"><i class="fas fa-trash  mx-0"></i> Sil</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="/Announcement/AddAnnouncement" class="btn btn-outline-primary col-12">Yeni Duyuru Ekle!</a>
+            </div>
+        </div>
+    </div>
+</div>

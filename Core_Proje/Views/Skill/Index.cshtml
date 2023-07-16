@@ -3,79 +3,82 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
-
 }
 
-<div class="card">
-    <!-- Card header -->
-    <div class="card-header border-0">
-        <h3 class="mb-0">Yetenek Listesi</h3>
-        <!-- Light table -->
-        <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" class="sort" data-sort="name">#</th>
-                        <th scope="col" class="sort" data-sort="budget">Başlık</th>
-                        <th scope="col" class="sort" data-sort="completion">Oran</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-
-                <tbody class="list">
-                    @foreach (var item in Model)
-                    {
-
-                        string[] renkler = { "blue", "cyan", "danger", "dark", "gray", "gray-dark", "green", "indigo", "info", "light", "orange", "pink", "primary", "purple", "red", "success", "teal", "warning", "yellow" };
-
-                        Random random = new Random();
-                        int rastgeleIndis = random.Next(0, renkler.Length);
-                        int rastgeleIndis1 = random.Next(0, renkler.Length);
-                        string rastgeleDeger = renkler[rastgeleIndis];
-                        string rastgeleDeger1 = renkler[rastgeleIndis1];
-
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">Yetenek Listesi</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
                         <tr>
-                            <th scope="row">
-                                <div class="media align-items-center">
-                                    <div class="media-body">
-                                        <span class="name mb-0 text-sm">@item.SkillID</span>
-                                    </div>
-                                </div>
-                            </th>
-                            <td>
-                                <span class="badge badge-dot mr-4">
-                                    <i class="bg-@rastgeleDeger"></i>
-                                    <span class="status">@item.Title</span>
-                                </span>
-                            </td>
+                            <th scope="col" class="sort" data-sort="name">#</th>
+                            <th scope="col" class="sort" data-sort="budget">Başlık</th>
+                            <th scope="col" class="sort" data-sort="completion">Oran</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
 
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <span class="completion mr-2">@item.Value%</span>
-                                    <div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-@rastgeleDeger1" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
+                    <tbody class="list">
+                        @foreach (var item in Model)
+                        {
+
+                            string[] renkler = { "blue", "cyan", "danger", "dark", "gray", "gray-dark", "green", "indigo", "info", "light", "orange", "pink", "primary", "purple", "red", "success", "teal", "warning", "yellow" };
+
+                            Random random = new Random();
+                            int rastgeleIndis = random.Next(0, renkler.Length);
+                            int rastgeleIndis1 = random.Next(0, renkler.Length);
+                            string rastgeleDeger = renkler[rastgeleIndis];
+                            string rastgeleDeger1 = renkler[rastgeleIndis1];
+
+                            <tr>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <span class="name mb-0 text-sm">@item.SkillID</span>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="text-right">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="/Skill/EditSkill/@item.SkillID"><i class="fas fa-pen mx-0"></i> Güncelle</a>
-                                        <a class="dropdown-item" href="/Skill/DeleteSkill/@item.SkillID"><i class="fas fa-trash  mx-0"></i> Sil</a>
+                                </th>
+                                <td>
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-@rastgeleDeger"></i>
+                                        <span class="status">@item.Title</span>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="completion mr-2">@item.Value%</span>
+                                        <div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-@rastgeleDeger1" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <a href="/Skill/AddSkill" class="btn btn-outline-primary col-12">Yeni Yetenek Ekle!</a>
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="/Skill/EditSkill/@item.SkillID"><i class="fas fa-pen mx-0"></i> Güncelle</a>
+                                            <a class="dropdown-item" href="/Skill/DeleteSkill/@item.SkillID"><i class="fas fa-trash  mx-0"></i> Sil</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="/Skill/AddSkill" class="btn btn-outline-primary col-12">Yeni Yetenek Ekle!</a>
+
+            </div>
         </div>
     </div>
 </div>
